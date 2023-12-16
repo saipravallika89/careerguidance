@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard</title>
+    <link rel="stylesheet" type="text/css" href="dashboard.css">
+    <style>
+        /* Add your CSS styling here */
+        /* ... (Your existing styles) ... */
+    </style>
+</head>
+<body>
+    <div style="text-align: center;">
+    <h2>Welcome to the Dashboard!</h2>
+    </div>
+    <div class="dashboard-container">
+        <div id="welcome-message" style="display: none;">
+        <h2>Welcome to the Dashboard!</h2>
+        </div>
+        <div class="dashboard-options">
+            <a class="profile" href="#" onclick="showProfile()">Profile</a>
+            <a class="opportunities" href="#" onclick="showOpportunities()">Opportunities</a>
+            <a class="recruitments" href="#" onclick="showRecruitments()">Recruitments</a>
+            <a class="contact" href="#" onclick="showContact()">Contact</a>
+            <a class="support" href="#" onclick="showSupport()">Feedback</a>
+        </div>
+
+        <div id="profile-section" class="dashboard-section" style="display: none;">
+            <!-- Profile details will be dynamically added here -->
+        </div>
+
+        <div id="opportunities-section" class="dashboard-section" style="display: none;">
+            <h2>Job Opportunities</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Company/Factory Name</th>
+                        <th>Job Title</th>
+                        <th>Skills Required</th>
+                        <th>vacancies</th>
+                        <th>Experience</th>
+                        <th>Qualifications</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>ABC Tech</td>
+                        <td>Software Developer</td>
+                        <td>JavaScript, HTML, CSS</td>
+                        <td>10</td>
+                        <td>0 years</td>
+                        <td>Bachelor's degree in Computer Science</td>
+                    </tr>
+                    <!-- Add more job opportunities as needed -->
+                    <tr>
+                        <td>XYZ Solutions</td>
+                        <td>Technical Assistant</td>
+                        <td>communication,electical required skills</td>
+                        <td>5</td>
+                        <td>1 year</td>
+                        <td>Diploma in relevant field</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>        
+
+        <div id="Recruitments-section" class="dashboard-section" style="display: none;">
+            <!-- Job Vacancies will be dynamically added here -->
+        </div>
+
+        <div id="contact-section" class="dashboard-section" style="display: none;">
+            <h2>Contact Us</h2>
+            <p>If you have any questions or need assistance, please feel free to reach out to us:</p>
+            <p>Email: <a href="mailto:employmenthub@example.com">employmenthub@example.com</a></p>
+            <p>Phone: 123-456-7890</p>
+        </div>
+
+        <div id="support-section" class="dashboard-section" style="display: none;">
+            <h2>Support and Feedback</h2>
+            <p>We value your feedback! Please share your experience and suggestions with us:</p>
+            <form id="feedback-form">
+                <label for="experience">Share your experience:</label>
+                <textarea id="experience" name="experience" rows="4" cols="50"></textarea>
+
+                <label for="suggestions">Any suggestions or challenging needs:</label>
+                <textarea id="suggestions" name="suggestions" rows="4" cols="50"></textarea>
+
+                <button type="button" onclick="submitFeedback()">Submit</button>
+            </form>
+        </div>
+    </div>
+ <script>
+        function showProfile() {
+            // Retrieve user details (you can replace this with actual user data)
+            var userDetails = {
+                name: "John Doe",
+                age: 25,
+                gender: "Male",
+                education: "Graduate",
+                phone: "123-456-7890",
+                email: "john@example.com",
+                qualification: "Bachelor of Science in Computer Science",
+                address: "123 Main Street, Cityville"
+            };
+
+            // Display user details in the profile section
+            var profileSection = document.getElementById('profile-section');
+            profileSection.innerHTML = `
+                <h2>${userDetails.name}'s Profile</h2>
+                <p><strong>Age:</strong> ${userDetails.age}</p>
+                <p><strong>Gender:</strong> ${userDetails.gender}</p>
+                <p><strong>Education:</strong> ${userDetails.education}</p>
+                <p><strong>Phone:</strong> ${userDetails.phone}</p>
+                <p><strong>Email:</strong> ${userDetails.email}</p>
+                <p><strong>Qualification:</strong> ${userDetails.qualification}</p>
+                <p><strong>Address:</strong> ${userDetails.address}</p>
+            `;
+
+            // Show the profile section and hide other sections
+            profileSection.style.display = 'block';
+            document.getElementById('opportunities-section').style.display = 'none';
+            document.getElementById('Recruitments-section').style.display = 'none';
+            document.getElementById('contact-section').style.display = 'none';
+            document.getElementById('support-section').style.display = 'none';
+        }
+
+        function showOpportunities() {
+            // Hide profile section and show opportunities section
+            document.getElementById('profile-section').style.display = 'none';
+            document.getElementById('opportunities-section').style.display = 'block';
+            document.getElementById('Recruitments-section').style.display = 'none';
+            document.getElementById('contact-section').style.display = 'none';
+            document.getElementById('support-section').style.display = 'none';
+        }
+
+        function showRecruitments() {
+            // Display job vacancies in the Recruitments section
+            var recruitmentsSection = document.getElementById('Recruitments-section');
+            
+            // Clear existing content
+            recruitmentsSection.innerHTML = '';
+
+            // Add heading for job vacancies
+            var heading = document.createElement('h2');
+            heading.textContent = 'Job Vacancies';
+            recruitmentsSection.appendChild(heading);
+
+            // Example Job Listing
+            var jobListing = document.createElement('div');
+            jobListing.className = 'job-listings';
+            jobListing.innerHTML = `
+                <h3>Software Developer</h3>
+                <p>Company: ABC Tech</p>
+                <p>Skills Required: JavaScript, HTML, CSS</p>
+                <p>Experience: 0-3 years</p>
+                <p>Qualifications: Bachelor's degree in Computer Science</p>
+                <p>Apply Now: <a href="#" onclick="applyForJob('Software Developer')">Apply</a></p>
+            `;
+
+            // Add the job listing to the Recruitments section
+            recruitmentsSection.appendChild(jobListing);
+
+            // Hide other sections
+            document.getElementById('profile-section').style.display = 'none';
+            document.getElementById('opportunities-section').style.display = 'none';
+            recruitmentsSection.style.display = 'block';
+            document.getElementById('contact-section').style.display = 'none';
+            document.getElementById('support-section').style.display = 'none';
+        }
+
+        function showContact() {
+            // Display contact section and hide other sections
+            document.getElementById('profile-section').style.display = 'none';
+            document.getElementById('opportunities-section').style.display = 'none';
+            document.getElementById('Recruitments-section').style.display = 'none';
+            document.getElementById('contact-section').style.display = 'block';
+            document.getElementById('support-section').style.display = 'none';
+        }
+
+        function showSupport() {
+            // Display support section and hide other sections
+            document.getElementById('profile-section').style.display = 'none';
+            document.getElementById('opportunities-section').style.display = 'none';
+            document.getElementById('Recruitments-section').style.display = 'none';
+            document.getElementById('contact-section').style.display = 'none';
+            document.getElementById('support-section').style.display = 'block';
+        }
+
+        function submitFeedback() {
+            // Implement logic to handle the submitted feedback (e.g., send it to a server)
+            // ...
+            alert('Feedback submitted successfully! Thank you for sharing your thoughts.');
+        }
+
+        function applyForJob(jobTitle) {
+            var recruitmentsSection = document.getElementById('Recruitments-section');
+            var successMessage = document.createElement('p');
+            successMessage.textContent = 'You are shortlisted for the job: ' + jobTitle;
+            recruitmentsSection.appendChild(successMessage);
+    
+            var shortlistedNames = ['John Doe', 'Jane Smith', 'Bob Johnson'];
+            var shortlistedList = document.createElement('ul');
+    
+            shortlistedNames.forEach(function (name) {
+                var listItem = document.createElement('li');
+                listItem.textContent = name;
+                shortlistedList.appendChild(listItem);
+            });
+    
+            recruitmentsSection.appendChild(document.createElement('br')); // Add a line break
+            recruitmentsSection.appendChild(document.createElement('br')); // Add another line break
+            recruitmentsSection.appendChild(shortlistedList);
+    
+            // Hide other sections
+            document.getElementById('profile-section').style.display = 'none';
+            document.getElementById('opportunities-section').style.display = 'none';
+            recruitmentsSection.style.display = 'block';
+            document.getElementById('contact-section').style.display = 'none';
+            document.getElementById('support-section').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
